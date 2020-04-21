@@ -91,6 +91,14 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.event.fields.slug') }}
+                        </th>
+                        <td>
+                            {{ $event->slug }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

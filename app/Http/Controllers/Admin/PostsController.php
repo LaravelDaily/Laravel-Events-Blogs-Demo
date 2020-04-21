@@ -10,6 +10,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Post;
 use App\Sport;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
@@ -123,6 +124,13 @@ class PostsController extends Controller
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
 
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        return response()->json(['slug' => $slug]);
     }
 
 }

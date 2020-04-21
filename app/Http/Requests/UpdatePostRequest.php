@@ -21,9 +21,16 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title'     => [
-                'required'],
+                'required'
+            ],
             'full_text' => [
-                'required'],
+                'required'
+            ],
+            'slug'      => [
+                'required',
+                'alpha_dash',
+                'unique:posts,slug,' . $this->route('post')->id,
+            ],
         ];
 
     }

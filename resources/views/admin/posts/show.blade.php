@@ -75,6 +75,14 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.post.fields.slug') }}
+                        </th>
+                        <td>
+                            {{ $post->slug }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

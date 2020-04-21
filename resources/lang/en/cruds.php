@@ -143,6 +143,8 @@ return [
             'created_by_helper'  => '',
             'photo'              => 'Photo',
             'photo_helper'       => '',
+            'slug'               => 'Slug',
+            'slug_helper'        => '',
         ],
     ],
     'post'           => [
@@ -169,6 +171,8 @@ return [
             'deleted_at_helper' => '',
             'photo'             => 'Photo',
             'photo_helper'      => '',
+            'slug'              => 'Slug',
+            'slug_helper'       => '',
         ],
     ],
 ];

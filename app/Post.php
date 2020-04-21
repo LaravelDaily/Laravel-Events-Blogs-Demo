@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -11,7 +12,7 @@ use \DateTimeInterface;
 
 class Post extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, Sluggable;
 
     public $table = 'posts';
 
@@ -34,6 +35,7 @@ class Post extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'slug',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -71,6 +73,15 @@ class Post extends Model implements HasMedia
 
         return $file;
 
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
 }

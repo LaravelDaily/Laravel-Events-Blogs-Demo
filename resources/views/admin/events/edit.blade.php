@@ -104,6 +104,16 @@
                 <span class="help-block">{{ trans('cruds.event.fields.photo_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="slug">{{ trans('cruds.event.fields.slug') }}</label>
+                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', $event->slug) }}" required>
+                @if($errors->has('slug'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('slug') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.event.fields.slug_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
@@ -170,5 +180,16 @@
         return _results
     }
 }
+</script>
+
+<script>
+  $('#name').change(function(e) {
+    $.get('{{ route('admin.events.checkSlug') }}',
+      { 'name': $(this).val() },
+      function( data ) {
+        $('#slug').val(data.slug);
+      }
+    );
+  });
 </script>
 @endsection

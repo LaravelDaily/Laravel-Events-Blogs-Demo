@@ -21,13 +21,21 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'name'       => [
-                'required'],
+                'required'
+            ],
             'start_time' => [
                 'required',
-                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format')],
+                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format')
+            ],
             'end_time'   => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
-                'nullable'],
+                'nullable'
+            ],
+            'slug'       => [
+                'required',
+                'alpha_dash',
+                'unique:events',
+            ],
         ];
 
     }

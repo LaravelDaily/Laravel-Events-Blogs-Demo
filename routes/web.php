@@ -40,12 +40,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('charities', 'CharitiesController');
 
     // Events
+    Route::get('events/check_slug', 'EventsController@checkSlug')->name('events.checkSlug');
     Route::delete('events/destroy', 'EventsController@massDestroy')->name('events.massDestroy');
     Route::post('events/media', 'EventsController@storeMedia')->name('events.storeMedia');
     Route::post('events/ckmedia', 'EventsController@storeCKEditorImages')->name('events.storeCKEditorImages');
     Route::resource('events', 'EventsController');
 
     // Posts
+    Route::get('posts/check_slug', 'PostsController@checkSlug')->name('posts.checkSlug');
     Route::delete('posts/destroy', 'PostsController@massDestroy')->name('posts.massDestroy');
     Route::post('posts/media', 'PostsController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostsController@storeCKEditorImages')->name('posts.storeCKEditorImages');

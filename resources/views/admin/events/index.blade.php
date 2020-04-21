@@ -50,6 +50,9 @@
                             {{ trans('cruds.event.fields.photo') }}
                         </th>
                         <th>
+                            {{ trans('cruds.event.fields.slug') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -90,6 +93,9 @@
                                         <img src="{{ $event->photo->getUrl('thumb') }}" width="50px" height="50px">
                                     </a>
                                 @endif
+                            </td>
+                            <td>
+                                {{ $event->slug ?? '' }}
                             </td>
                             <td>
                                 @can('event_show')

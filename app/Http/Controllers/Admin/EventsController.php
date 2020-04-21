@@ -11,6 +11,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Region;
 use App\Sport;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
@@ -128,6 +129,13 @@ class EventsController extends Controller
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
 
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Event::class, 'slug', $request->name);
+
+        return response()->json(['slug' => $slug]);
     }
 
 }

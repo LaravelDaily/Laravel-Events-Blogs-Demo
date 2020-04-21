@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -13,7 +14,7 @@ use \DateTimeInterface;
 
 class Event extends Model implements HasMedia
 {
-    use SoftDeletes, MultiTenantModelTrait, HasMediaTrait;
+    use SoftDeletes, MultiTenantModelTrait, HasMediaTrait, Sluggable;
 
     public $table = 'events';
 
@@ -41,6 +42,7 @@ class Event extends Model implements HasMedia
         'deleted_at',
         'description',
         'created_by_id',
+        'slug',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -114,6 +116,15 @@ class Event extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'created_by_id');
 
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
 }

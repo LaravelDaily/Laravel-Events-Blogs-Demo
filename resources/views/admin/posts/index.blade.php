@@ -41,6 +41,9 @@
                             {{ trans('cruds.post.fields.photo') }}
                         </th>
                         <th>
+                            {{ trans('cruds.post.fields.slug') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -73,6 +76,9 @@
                                         <img src="{{ $post->photo->getUrl('thumb') }}" width="50px" height="50px">
                                     </a>
                                 @endif
+                            </td>
+                            <td>
+                                {{ $post->slug ?? '' }}
                             </td>
                             <td>
                                 @can('post_show')
