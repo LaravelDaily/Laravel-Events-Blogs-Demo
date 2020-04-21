@@ -2,18 +2,19 @@
 
 Route::redirect('/', '/login');
 Route::get('/home', function () {
+    $routeName = auth()->user()->is_blog_writer ? 'admin.posts.index' : 'admin.events.index';
+
     if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
+        return redirect()->route($routeName)->with('status', session('status'));
     }
 
-    return redirect()->route('admin.home');
+    return redirect()->route($routeName);
 });
 
 Auth::routes();
 // Admin
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');

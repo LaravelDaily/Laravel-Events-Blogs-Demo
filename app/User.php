@@ -55,6 +55,18 @@ class User extends Authenticatable
 
     }
 
+    public function getIsCompanyAttribute()
+    {
+        return $this->roles()->where('id', 2)->exists();
+
+    }
+
+    public function getIsBlogWriterAttribute()
+    {
+        return $this->roles()->where('id', 3)->exists();
+
+    }
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
