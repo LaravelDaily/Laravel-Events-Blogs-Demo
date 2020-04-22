@@ -125,9 +125,11 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <a href="{{ route('posts.show', $post) }}">
-                                            <img class="card-img-top img-fluid" src="{{ asset('images/products/products-1.jpg') }}" alt="Card image cap">
-                                        </a>
+                                        @if($post->photo)
+                                            <a href="{{ route('posts.show', $post) }}">
+                                                <img class="card-img-top img-fluid" src="{{ $post->photo->thumb_front }}" alt="Card image cap">
+                                            </a>
+                                        @endif
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title"><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h4>

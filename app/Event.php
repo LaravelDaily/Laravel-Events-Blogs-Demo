@@ -54,6 +54,8 @@ class Event extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->width(50)->height(50);
+        $this->addMediaConversion('front')->width(730)->height(475);
+        $this->addMediaConversion('thumb_front')->width(350)->height(230);
 
     }
 
@@ -104,8 +106,10 @@ class Event extends Model implements HasMedia
         $file = $this->getMedia('photo')->last();
 
         if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
+            $file->url         = $file->getUrl();
+            $file->thumbnail   = $file->getUrl('thumb');
+            $file->front       = $file->getUrl('front');
+            $file->thumb_front = $file->getUrl('thumb_front');
         }
 
         return $file;

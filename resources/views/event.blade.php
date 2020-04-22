@@ -76,10 +76,12 @@
 						</ul>
 					</div>
 
-					<!-- product slider -->
-                    <div class="product-slider-item my-4">
-                        <img class="img-fluid w-100" src="{{ asset('images/products/products-1.jpg') }}" alt="product-img">
-                    </div>
+                    <!-- product slider -->
+                    @if($event->photo)
+                        <div class="product-slider-item my-4">
+                            <img class="img-fluid w-100" src="{{ $event->photo->front }}" alt="product-img">
+                        </div>
+                    @endif
 					<!-- product slider -->
                     @if($event->description)
                         <div class="content mt-5 pt-5">

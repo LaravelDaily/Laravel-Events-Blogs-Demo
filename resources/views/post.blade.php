@@ -10,8 +10,10 @@
 					<h3>{{ $post->title }}</h3>
 					<ul class="list-inline">
 						<li class="list-inline-item">{{ $post->created_at }}</li>
-					</ul>
-					<img src="{{ asset('images/blog/post-4.jpg') }}" alt="article-01">
+                    </ul>
+                    @if($post->photo)
+                        <img src="{{ $post->photo->front }}" alt="article-01">
+                    @endif
                     {!! $post->full_text !!}
                     <hr>
                     @if($post->sport)

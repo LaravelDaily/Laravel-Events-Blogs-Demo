@@ -47,6 +47,8 @@ class Post extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')->width(50)->height(50);
+        $this->addMediaConversion('front')->width(1050)->height(700);
+        $this->addMediaConversion('thumb_front')->width(350)->height(230);
 
     }
 
@@ -67,8 +69,10 @@ class Post extends Model implements HasMedia
         $file = $this->getMedia('photo')->last();
 
         if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
+            $file->url         = $file->getUrl();
+            $file->thumbnail   = $file->getUrl('thumb');
+            $file->front       = $file->getUrl('front');
+            $file->thumb_front = $file->getUrl('thumb_front');
         }
 
         return $file;
