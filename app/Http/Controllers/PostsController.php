@@ -9,6 +9,8 @@ class PostsController extends Controller
 {
     public function show(Post $post)
     {
+        $post->load(['event.region', 'sport']);
+
         return view('post', compact('post'));
     }
 }

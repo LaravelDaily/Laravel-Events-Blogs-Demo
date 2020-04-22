@@ -27,7 +27,7 @@
 						<div class="container">
 							<div class="row justify-content-center">
 								<div class="col-lg-12 col-md-12 align-content-center">
-										<form>
+										<form action="{{ route('events.index') }}">
 											<div class="form-row">
 												<div class="form-group col-md-2">
 													<input type="text" class="form-control my-2 my-lg-1 date" id="date_from" name="date_from" placeholder="Date from">
@@ -38,8 +38,8 @@
 												<div class="form-group col-md-2">
 													<select class="w-100 form-control mt-lg-1 mt-md-2" id="sport_id" name="sport_id">
                                                         <option value="">Select sport</option>
-                                                        @foreach($allSports as $sport)
-                                                            <option value="{{ $sport->id }}">{{ $sport->name }}</option>
+                                                        @foreach($searchSports as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}</option>
                                                         @endforeach
 													</select>
 												</div>
@@ -125,12 +125,12 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <a href="single.html">
+                                        <a href="{{ route('posts.show', $post) }}">
                                             <img class="card-img-top img-fluid" src="{{ asset('images/products/products-1.jpg') }}" alt="Card image cap">
                                         </a>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="single.html">{{ $post->title }}</a></h4>
+                                        <h4 class="card-title"><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h4>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
                                                 <a href="#"><i class="fa fa-calendar"></i>{{ $post->created_at }}</a>

@@ -12,15 +12,16 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        $popularSports   = Sport::pluck('name', 'id');
-        $searchRegions   = Region::pluck('name', 'id');
-        $searchCharities = Charity::pluck('name', 'id');
-        $blogPosts       = Post::latest()->take(3)->get();
-        $allSports       = Sport::with(['events' => function ($query) {
+        $popularSports = Sport::withCount('events')
+            ->orderBy('events_count', 'desc')
+            ->take(5)
+            ->pluck('name', 'id');
+        $blogPosts     = Post::latest()->take(3)->get();
+        $allSports     = Sport::with(['events' => function ($query) {
                 $query->where('start_time', '>', now())->orderBy('start_time', 'asc')->take(5);
             }])
             ->get();
 
-        return view('home', compact('popularSports', 'searchRegions', 'searchCharities', 'allSports', 'blogPosts'));
+        return view('home', compact('popularSports', 'allSports', 'blogPosts'));
     }
 }
