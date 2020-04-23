@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
+            CharitiesTableSeeder::class,
+            SportsTableSeeder::class,
+            RegionsTableSeeder::class,
         ]);
 
     }
