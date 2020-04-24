@@ -18,7 +18,7 @@ class HomePageController extends Controller
             ->pluck('name', 'id');
         $blogPosts     = Post::latest()->take(3)->get();
         $allSports     = Sport::with(['events' => function ($query) {
-                $query->where('start_time', '>', now())->orderBy('start_time', 'asc')->take(5);
+                $query->where('start_time', '>', now())->orderBy('start_time', 'asc')->get();
             }])
             ->get();
 
